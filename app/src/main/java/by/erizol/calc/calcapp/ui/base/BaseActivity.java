@@ -14,8 +14,6 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import by.erizol.calc.calcapp.Calc;
-import by.erizol.calc.calcapp.di.component.ScreenComponent;
-import by.erizol.calc.calcapp.di.module.ScreenModule;
 import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BaseActivity extends AppCompatActivity implements MvpView {
@@ -24,7 +22,6 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
     CompositeDisposable compositeDisposable;
 
     private Unbinder unbinder;
-    private ScreenComponent screenComponent;
 
     protected RelativeLayout leftDrawer;
     protected DrawerLayout drawerLayout;
@@ -38,18 +35,11 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
         setContentView(getContentView());
         unbinder = ButterKnife.bind(this);
 
-        screenComponent = DaggerScreenComponent.builder()
-                .screenModule(new ScreenModule(this))
-                .applicationComponent(((Calc) getApplication()).getApplicationComponent())
-                .build();
 
     }
 
     protected abstract int getContentView();
 
-    public ScreenComponent getScreenComponent() {
-        return screenComponent;
-    }
 
 
     @Override

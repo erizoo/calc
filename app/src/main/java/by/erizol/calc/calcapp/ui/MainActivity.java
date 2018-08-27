@@ -5,7 +5,9 @@ import android.widget.Toast;
 
 import javax.inject.Inject;
 
+import by.erizol.calc.calcapp.Calc;
 import by.erizol.calc.calcapp.R;
+import by.erizol.calc.calcapp.di.component.ApplicationComponent;
 import by.erizol.calc.calcapp.ui.base.BaseActivity;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
@@ -16,7 +18,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getScreenComponent().inject(this);
+        ApplicationComponent applicationComponent = ((Calc) getApplication()).getApplicationComponent();
+        applicationComponent.inject(this);
         presenter.sendMessage();
     }
 
