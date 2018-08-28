@@ -1,20 +1,9 @@
-package by.erizol.calc.calcapp.ui;
+package by.erizol.calc.calcapp.ui.calc_page;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -22,13 +11,10 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import by.erizol.calc.calcapp.R;
 import by.erizol.calc.calcapp.data.ResponseModel.ResponseCountry;
+import by.erizol.calc.calcapp.ui.CreditModel;
 import by.erizol.calc.calcapp.ui.base.BaseActivity;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
-
-    private static final String TAG = "FireBase";
-    private static final String EMAIL = "alexboiko1993@gmail.com";
-    private static final String PASSWORD = "Alex209688";
 
     @Inject
     MainMvpPresenter<MainMvpView> presenter;
@@ -53,59 +39,21 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @BindView(R.id.textView_overpayment)
     TextView overpaymentTextView;
 
-    private FirebaseAuth mAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getScreenComponent().inject(this);
-        mAuth = FirebaseAuth.getInstance();
-
-        mAuth.signInWithEmailAndPassword(EMAIL, PASSWORD)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-
-                    } else {
-                        Log.w(TAG, "signInWithEmail:failure", task.getException());
-                    }
-                });
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        ArrayList<String> cityList = new ArrayList<>();
-
-
-        myRef.child("cities").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                cityList.clear();
-                for (DataSnapshot data : dataSnapshot.getChildren()){
-                    data.getKey();
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w(TAG, "getUser:onCancelled", databaseError.toException());
-                // ...
-            }
-        });
-
         presenter.onAttach(this);
-//        presenter.checkCountry();
     }
 
 
     @OnClick(R.id.count_button)
     public void count() {
-
-//        CreditModel creditModel = new CreditModel();
-//        creditModel.setSummCredit(Double.parseDouble(creditSummEditText.getText().toString()));
-//        creditModel.setRate(Double.parseDouble(rateEditText.getText().toString())/100);
-//        creditModel.setDate(Double.parseDouble(dateEditText.getText().toString()));
-//        presenter.count(creditModel);
+        CreditModel creditModel = new CreditModel();
+        creditModel.setSummCredit(Double.parseDouble(creditSummEditText.getText().toString()));
+        creditModel.setRate(Double.parseDouble(rateEditText.getText().toString()) / 100);
+        creditModel.setDate(Double.parseDouble(dateEditText.getText().toString()));
+        presenter.count(creditModel);
     }
 
     @Override
@@ -132,10 +80,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         overpaymentTextView.setText(stringBuilder);
     }
 
-    @Override
-    public void onCountrtChecked(ResponseCountry responseCountry) {
-        System.out.println(responseCountry);
-    }
 
     @Override
     protected void onStart() {

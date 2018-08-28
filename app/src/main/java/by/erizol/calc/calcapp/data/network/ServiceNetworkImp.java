@@ -19,6 +19,6 @@ public class ServiceNetworkImp implements ServiceNetwork {
 
     @Override
     public Observable<ResponseCountry> checkCountry() {
-        return apiMethods.checkCountry();
+        return apiMethods.checkCountry("java-ipapi-client");
     }
 }

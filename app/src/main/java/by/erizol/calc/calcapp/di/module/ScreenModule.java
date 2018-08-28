@@ -5,9 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 
 import by.erizol.calc.calcapp.di.ActivityContext;
 import by.erizol.calc.calcapp.di.PerScreen;
-import by.erizol.calc.calcapp.ui.MainMvpPresenter;
-import by.erizol.calc.calcapp.ui.MainMvpPresenterImpl;
-import by.erizol.calc.calcapp.ui.MainMvpView;
+import by.erizol.calc.calcapp.ui.Start_screen.StartMvpPresenter;
+import by.erizol.calc.calcapp.ui.Start_screen.StartMvpPresenterImpl;
+import by.erizol.calc.calcapp.ui.Start_screen.StartMvpView;
+import by.erizol.calc.calcapp.ui.calc_page.MainMvpPresenter;
+import by.erizol.calc.calcapp.ui.calc_page.MainMvpPresenterImpl;
+import by.erizol.calc.calcapp.ui.calc_page.MainMvpView;
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.disposables.CompositeDisposable;
@@ -40,6 +43,12 @@ public class ScreenModule {
     @Provides
     @PerScreen
     MainMvpPresenter<MainMvpView> provideEquipmentDeliveryCertificateMvpPresenter(MainMvpPresenterImpl<MainMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerScreen
+    StartMvpPresenter<StartMvpView> provideStartMvpPresenter(StartMvpPresenterImpl<StartMvpView> presenter) {
         return presenter;
     }
 }

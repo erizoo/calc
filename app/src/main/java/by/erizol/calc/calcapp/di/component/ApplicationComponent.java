@@ -9,7 +9,6 @@ import by.erizol.calc.calcapp.data.RepositoryManager;
 import by.erizol.calc.calcapp.di.ApplicationContext;
 import by.erizol.calc.calcapp.di.module.ApiModule;
 import by.erizol.calc.calcapp.di.module.ApplicationModule;
-import by.erizol.calc.calcapp.ui.MainActivity;
 import dagger.Component;
 
 @Singleton

@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
+import by.erizol.calc.calcapp.BuildConfig;
 import by.erizol.calc.calcapp.data.network.ApiMethods;
 import by.erizol.calc.calcapp.data.network.ServiceNetwork;
 import by.erizol.calc.calcapp.data.network.ServiceNetworkImp;
@@ -17,6 +18,7 @@ import dagger.Provides;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -87,17 +89,14 @@ public class ApiModule {
     @Singleton
     public OkHttpClient provideOkHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.readTimeout(120, TimeUnit.SECONDS)
-                .writeTimeout(5, TimeUnit.SECONDS)
-                .connectTimeout(5, TimeUnit.SECONDS);
-
-        builder.addInterceptor(chain -> {
-            Response response = chain.proceed(chain.request());
-
-
-            return response;
-        });
-
+        builder.readTimeout(5, TimeUnit.SECONDS).writeTimeout(5, TimeUnit.SECONDS).connectTimeout(5, TimeUnit.SECONDS);
+        //                модификация запроса
+        //                .addInterceptor()
+        if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            builder.addInterceptor(loggingInterceptor);
+        }
         return builder.build();
     }
 }

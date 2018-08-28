@@ -6,21 +6,20 @@ import java.util.List;
 
 public class ResponseCountry {
 
-    @SerializedName("countries")
-    private List<String> countries;
+    private String country;
 
     public ResponseCountry() {
     }
 
-    public ResponseCountry(List<String> countries) {
-        this.countries = countries;
+    public ResponseCountry(String country) {
+        this.country = country;
     }
 
-    public List<String> getCountries() {
-        return countries;
+    public String getCountry() {
+        return country;
     }
 
-    public void setCountries(List<String> countries) {
-        this.countries = countries;
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
