@@ -62,6 +62,11 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     public void sendMessage(double interestPerMonth, double bodyCredit, double monthlyPaymen, double totalSum, double overpayment) {
+        interestPerMonthTextView.setText(R.string.interest_per_month);
+        bodyCreditTextView.setText(R.string.body_credit);
+        monthlyPaymentTextView.setText(R.string.monthly_payment);
+        totalSumTextView.setText(R.string.total_sum);
+        overpaymentTextView.setText(R.string.overpayment);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(interestPerMonthTextView.getText()).append(" ").append(String.valueOf(interestPerMonth));
         interestPerMonthTextView.setText(stringBuilder);
