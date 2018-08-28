@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">calcApp</string>
+    <string name="credit_summ">Сумма кредита</string>
+    <string name="rate">Прцоентная ставка</string>
+    <string name="date">Срок крдитования</string>
 </resources>

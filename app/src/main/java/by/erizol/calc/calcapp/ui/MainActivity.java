@@ -18,8 +18,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ApplicationComponent applicationComponent = ((Calc) getApplication()).getApplicationComponent();
-        applicationComponent.inject(this);
+        getScreenComponent().inject(this);
         presenter.sendMessage();
     }
 

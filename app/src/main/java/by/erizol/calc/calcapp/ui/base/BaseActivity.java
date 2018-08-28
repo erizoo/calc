@@ -14,19 +14,20 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import by.erizol.calc.calcapp.Calc;
+import by.erizol.calc.calcapp.di.component.ApplicationComponent;
+import by.erizol.calc.calcapp.di.component.DaggerScreenComponent;
+import by.erizol.calc.calcapp.di.component.ScreenComponent;
+import by.erizol.calc.calcapp.di.module.ApplicationModule;
+import by.erizol.calc.calcapp.di.module.ScreenModule;
 import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BaseActivity extends AppCompatActivity implements MvpView {
 
     @Inject
     CompositeDisposable compositeDisposable;
+    ScreenComponent screenComponent;
 
     private Unbinder unbinder;
-
-    protected RelativeLayout leftDrawer;
-    protected DrawerLayout drawerLayout;
-
-    private ProgressDialog progressDialog;
 
 
     @Override
@@ -34,13 +35,18 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
         super.onCreate(savedInstanceState);
         setContentView(getContentView());
         unbinder = ButterKnife.bind(this);
-
+        screenComponent = DaggerScreenComponent.builder()
+                .screenModule(new ScreenModule(this))
+                .applicationComponent(((Calc) getApplication()).getApplicationComponent())
+                .build();
 
     }
 
     protected abstract int getContentView();
 
-
+    public ScreenComponent getScreenComponent(){
+        return screenComponent;
+    }
 
     @Override
     public Context getContext() {
