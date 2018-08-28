@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1059592326595",
+    "firebase_url": "https://calcapp-69265.firebaseio.com",
+    "project_id": "calcapp-69265",
+    "storage_bucket": "calcapp-69265.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059592326595:android:723729b8bdccefd4",
+        "android_client_info": {
+          "package_name": "by.erizol.calc.calcapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059592326595-a9rp8ot73c0a6up7djor3pp57lksq9bt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "by.erizol.calc.calcapp",
+            "certificate_hash": "66084fcdf9857577e0e21f8b240037257d2db35c"
+          }
+        },
+        {
+          "client_id": "1059592326595-jkim32ngsk5b5ro1ahe3stqntn17794b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9svn7ovMAgTrONguear4AbToFy0-khU0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059592326595-jkim32ngsk5b5ro1ahe3stqntn17794b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

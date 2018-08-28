@@ -62,7 +62,7 @@ public class MainMvpPresenterImpl <V extends MainMvpView> extends BasePresenter<
         return Math.round(result*100)/100.0d;
     }
 
-    public double getInterestPerMonth(CreditModel creditModel){
+    private double getInterestPerMonth(CreditModel creditModel){
         double result = (creditModel.getSummCredit() * creditModel.getRate() * DAY_OF_MONTH)/365;
         return Math.round(result*100)/100.0d;
     }
