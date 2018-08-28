@@ -4,9 +4,9 @@
     <string name="rate">Процентная ставка</string>
     <string name="date">Срок кредитования</string>
     <string name="count_button">Рассчитать</string>
-    <string name="interest_per_month">Проценты в месяц</string>
-    <string name="body_credit">Тело кредита</string>
-    <string name="monthly_payment">Ежемесячный платеж</string>
-    <string name="total_sum">Общая сумма</string>
-    <string name="overpayment">Переплата</string>
+    <string name="interest_per_month">Проценты в месяц:</string>
+    <string name="body_credit">Тело кредита:</string>
+    <string name="monthly_payment">Ежемесячный платеж:</string>
+    <string name="total_sum">Общая сумма:</string>
+    <string name="overpayment">Переплата:</string>
 </resources>

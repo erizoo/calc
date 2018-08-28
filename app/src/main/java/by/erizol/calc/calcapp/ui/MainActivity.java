@@ -3,15 +3,14 @@ package by.erizol.calc.calcapp.ui;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import by.erizol.calc.calcapp.Calc;
 import by.erizol.calc.calcapp.R;
-import by.erizol.calc.calcapp.di.component.ApplicationComponent;
 import by.erizol.calc.calcapp.ui.base.BaseActivity;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
@@ -28,19 +27,31 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @BindView(R.id.count_button)
     Button countButton;
 
+    @BindView(R.id.textView_interest_per_month)
+    TextView interestPerMonthTextView;
+    @BindView(R.id.textView_body_credit)
+    TextView bodyCreditTextView;
+    @BindView(R.id.textView_monthly_payment)
+    TextView monthlyPaymentTextView;
+    @BindView(R.id.textView_total_sum)
+    TextView totalSumTextView;
+    @BindView(R.id.textView_overpayment)
+    TextView overpaymentTextView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getScreenComponent().inject(this);
-        presenter.sendMessage();
+        presenter.onAttach(this);
     }
 
     @OnClick(R.id.count_button)
     public void count(){
         CreditModel creditModel = new CreditModel();
-        creditModel.setSummCredit(creditSummEditText.getText().toString());
-        creditModel.setRate(rateEditText.getText().toString());
-        creditModel.setDate(dateEditText.getText().toString());
+        creditModel.setSummCredit(Double.parseDouble(creditSummEditText.getText().toString()));
+        creditModel.setRate(Double.parseDouble(rateEditText.getText().toString())/100);
+        creditModel.setDate(Double.parseDouble(dateEditText.getText().toString()));
         presenter.count(creditModel);
     }
 
@@ -50,7 +61,21 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     }
 
     @Override
-    public void sendMessage() {
-        Toast.makeText(this, "готово", Toast.LENGTH_LONG).show();
+    public void sendMessage(double interestPerMonth, double bodyCredit, double monthlyPaymen, double totalSum, double overpayment) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(interestPerMonthTextView.getText()).append(" ").append(String.valueOf(interestPerMonth));
+        interestPerMonthTextView.setText(stringBuilder);
+        stringBuilder.setLength(0);
+        stringBuilder.append(bodyCreditTextView.getText()).append(" ").append(String.valueOf(bodyCredit));
+        bodyCreditTextView.setText(stringBuilder);
+        stringBuilder.setLength(0);
+        stringBuilder.append(monthlyPaymentTextView.getText()).append(" ").append(String.valueOf(monthlyPaymen));
+        monthlyPaymentTextView.setText(stringBuilder);
+        stringBuilder.setLength(0);
+        stringBuilder.append(totalSumTextView.getText()).append(" ").append(String.valueOf(totalSum));
+        totalSumTextView.setText(stringBuilder);
+        stringBuilder.setLength(0);
+        stringBuilder.append(overpaymentTextView.getText()).append(" ").append(String.valueOf(overpayment));
+        overpaymentTextView.setText(stringBuilder);
     }
 }

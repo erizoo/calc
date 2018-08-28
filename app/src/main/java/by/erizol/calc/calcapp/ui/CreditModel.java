@@ -2,40 +2,40 @@ package by.erizol.calc.calcapp.ui;
 
 public class CreditModel {
 
-    private String summCredit;
-    private String rate;
-    private String date;
+    private double summCredit;
+    private double rate;
+    private double date;
 
     public CreditModel() {
     }
 
-    public CreditModel(String summCredit, String rate, String date) {
+    public CreditModel(double summCredit, double rate, double date) {
         this.summCredit = summCredit;
         this.rate = rate;
         this.date = date;
     }
 
-    public String getSummCredit() {
+    public double getSummCredit() {
         return summCredit;
     }
 
-    public void setSummCredit(String summCredit) {
+    public void setSummCredit(double summCredit) {
         this.summCredit = summCredit;
     }
 
-    public String getRate() {
+    public double getRate() {
         return rate;
     }
 
-    public void setRate(String rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 
-    public String getDate() {
+    public double getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(double date) {
         this.date = date;
     }
 }
