@@ -2,7 +2,7 @@
     <string name="app_name">calcApp</string>count_button
     <string name="credit_summ">Сумма кредита</string>
     <string name="rate">Процентная ставка</string>
-    <string name="date">Срок кредитования</string>
+    <string name="date">Срок кредитования (мес)</string>
     <string name="count_button">Рассчитать</string>
     <string name="interest_per_month">Проценты в месяц:</string>
     <string name="body_credit">Тело кредита:</string>

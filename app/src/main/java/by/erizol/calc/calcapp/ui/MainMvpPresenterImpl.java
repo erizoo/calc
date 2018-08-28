@@ -2,8 +2,11 @@ package by.erizol.calc.calcapp.ui;
 
 import javax.inject.Inject;
 
+import by.erizol.calc.calcapp.data.RepositoryManager;
 import by.erizol.calc.calcapp.ui.base.BasePresenter;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainMvpPresenterImpl <V extends MainMvpView> extends BasePresenter<V>
         implements MainMvpPresenter<V> {
@@ -11,8 +14,8 @@ public class MainMvpPresenterImpl <V extends MainMvpView> extends BasePresenter<
     private static final int DAY_OF_MONTH = 30;
 
     @Inject
-    public MainMvpPresenterImpl(CompositeDisposable compositeDisposable) {
-        super(compositeDisposable);
+    public MainMvpPresenterImpl(RepositoryManager repositoryManager, CompositeDisposable compositeDisposable) {
+        super(repositoryManager, compositeDisposable);
     }
 
 
@@ -24,6 +27,19 @@ public class MainMvpPresenterImpl <V extends MainMvpView> extends BasePresenter<
         double totalSum = getTotalSum(monthlyPaymen, creditModel);
         double overpayment = getOverpayment(totalSum, creditModel);
         getMvpView().sendMessage(interestPerMonth, bodyCredit, monthlyPaymen, totalSum, overpayment);
+    }
+
+    @Override
+    public void checkCountry() {
+        getCompositeDisposable().add(
+                getRepositoryManager().getServiceNetwork().checkCountry()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                getMvpView()::onCountrtChecked,
+                                Throwable::printStackTrace
+                        )
+        );
     }
 
     private double getOverpayment(double totalSum, CreditModel creditModel) {

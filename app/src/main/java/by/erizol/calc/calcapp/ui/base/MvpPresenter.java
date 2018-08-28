@@ -1,5 +1,6 @@
 package by.erizol.calc.calcapp.ui.base;
 
+import by.erizol.calc.calcapp.data.RepositoryManager;
 import io.reactivex.disposables.CompositeDisposable;
 
 public interface MvpPresenter<V> {
@@ -13,5 +14,7 @@ public interface MvpPresenter<V> {
     CompositeDisposable getCompositeDisposable();
 
     V getMvpView();
+
+    RepositoryManager getRepositoryManager();
 
 }

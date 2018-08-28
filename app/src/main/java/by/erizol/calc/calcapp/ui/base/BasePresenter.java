@@ -1,16 +1,21 @@
 package by.erizol.calc.calcapp.ui.base;
 
 import javax.inject.Inject;
+
+import by.erizol.calc.calcapp.data.RepositoryManager;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
+
+    private final RepositoryManager repositoryManager;
     private final CompositeDisposable compositeDisposable;
 
     private V mvpView;
 
     @Inject
-    public BasePresenter( CompositeDisposable compositeDisposable) {
+    public BasePresenter(RepositoryManager repositoryManager, CompositeDisposable compositeDisposable) {
+        this.repositoryManager = repositoryManager;
         this.compositeDisposable = compositeDisposable;
     }
 
@@ -37,6 +42,11 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
     @Override
     public CompositeDisposable getCompositeDisposable(){
         return compositeDisposable;
+    }
+
+    @Override
+    public RepositoryManager getRepositoryManager(){
+        return repositoryManager;
     }
 
 }

@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import javax.inject.Singleton;
 
 import by.erizol.calc.calcapp.Calc;
+import by.erizol.calc.calcapp.data.RepositoryManager;
+import by.erizol.calc.calcapp.data.RepositoryManagerImpl;
 import by.erizol.calc.calcapp.di.ActivityContext;
 import by.erizol.calc.calcapp.di.ApplicationContext;
 import by.erizol.calc.calcapp.di.PerScreen;
@@ -34,6 +36,12 @@ public class ApplicationModule {
     @Provides
     Calc provideApplication() {
         return application;
+    }
+
+    @Provides
+    @Singleton
+    RepositoryManager provideRepositoryManager(RepositoryManagerImpl repositoryManager) {
+        return repositoryManager;
     }
 }
 
