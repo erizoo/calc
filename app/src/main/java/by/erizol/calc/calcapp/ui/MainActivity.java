@@ -53,18 +53,12 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         super.onCreate(savedInstanceState);
         getScreenComponent().inject(this);
         mAuth = FirebaseAuth.getInstance();
-
-
-
         presenter.onAttach(this);
-//        presenter.checkCountry();
     }
-
-
 
     @OnClick(R.id.count_button)
     public void count(){
-        mAuth.signInWithEmailAndPassword(EMAIL, PASSWORD)
+        mAuth.createUserWithEmailAndPassword(EMAIL, PASSWORD)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
@@ -73,11 +67,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                         Log.w(TAG, "signInWithEmail:failure", task.getException());
                     }
                 });
-//        CreditModel creditModel = new CreditModel();
-//        creditModel.setSummCredit(Double.parseDouble(creditSummEditText.getText().toString()));
-//        creditModel.setRate(Double.parseDouble(rateEditText.getText().toString())/100);
-//        creditModel.setDate(Double.parseDouble(dateEditText.getText().toString()));
-//        presenter.count(creditModel);
     }
 
     @Override
