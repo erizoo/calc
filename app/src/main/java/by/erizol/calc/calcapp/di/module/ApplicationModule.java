@@ -2,8 +2,9 @@ package by.erizol.calc.calcapp.di.module;
 
 import android.content.Context;
 
+import javax.inject.Singleton;
+
 import by.erizol.calc.calcapp.Calc;
-import by.erizol.calc.calcapp.di.PerScreen;
 import by.erizol.calc.calcapp.ui.MainMvpPresenter;
 import by.erizol.calc.calcapp.ui.MainMvpPresenterImpl;
 import by.erizol.calc.calcapp.ui.MainMvpView;
@@ -32,6 +33,7 @@ public class ApplicationModule {
         return new CompositeDisposable();
     }
 
+    @Singleton
     @Provides
     MainMvpPresenter<MainMvpView> provideMainMvpPresenter(MainMvpPresenterImpl<MainMvpView> presenter){
         return presenter;
