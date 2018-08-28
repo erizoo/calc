@@ -15,6 +15,11 @@ public class MainMvpPresenterImpl <V extends MainMvpView> extends BasePresenter<
 
     @Override
     public void sendMessage() {
-        getMvpView().sendMessage();
+        System.out.println("sdgsdg");
+    }
+
+    @Override
+    public void count(CreditModel creditModel) {
+
     }
 }
