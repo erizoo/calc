@@ -33,7 +33,6 @@ public class ApplicationModule {
     }
 
     @Provides
-    @PerScreen
     MainMvpPresenter<MainMvpView> provideMainMvpPresenter(MainMvpPresenterImpl<MainMvpView> presenter){
         return presenter;
     }

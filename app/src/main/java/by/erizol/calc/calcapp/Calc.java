@@ -10,7 +10,7 @@ import by.erizol.calc.calcapp.di.component.DaggerApplicationComponent;
 import by.erizol.calc.calcapp.di.module.ApplicationModule;
 
 
-public class Calc  extends Application {
+public class Calc extends Application {
 
 
     private ApplicationComponent applicationComponent;
