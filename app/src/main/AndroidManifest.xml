@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.calc_page.MainActivity"/>
-        <activity android:name=".ui.Screen_ShopWindow"/>
+        <activity android:name=".ui.shop_window.Screen_ShopWindow"/>
         <activity android:name=".ui.Start_screen.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

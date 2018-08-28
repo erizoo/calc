@@ -43,27 +43,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="@string/credit_summ" />
+        android:layout_alignStart="@+id/editText_credit_summ"
+        android:layout_marginTop="17dp"
+        android:text="@string/credit_summ"
+        android:textSize="13sp" />
 
     <TextView
         android:id="@+id/textView_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="103dp"
-        android:text="@string/rate" />
+        android:layout_alignStart="@+id/editText_credit_summ"
+        android:layout_marginTop="102dp"
+        android:text="@string/rate"
+        android:textSize="13sp" />
 
     <TextView
         android:id="@+id/textView_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="186dp"
-        android:text="@string/date" />
+        android:layout_alignStart="@+id/editText_credit_summ"
+        android:layout_marginTop="187dp"
+        android:text="@string/date"
+        android:textSize="13sp" />
 
     <Button
         android:id="@+id/count_button"

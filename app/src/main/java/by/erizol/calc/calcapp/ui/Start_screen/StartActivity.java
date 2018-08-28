@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,10 +19,10 @@ import javax.inject.Inject;
 
 import by.erizol.calc.calcapp.R;
 import by.erizol.calc.calcapp.data.ResponseModel.ResponseCountry;
-import by.erizol.calc.calcapp.ui.FireBasePojo;
-import by.erizol.calc.calcapp.ui.Screen_ShopWindow;
-import by.erizol.calc.calcapp.ui.base.BaseActivity;
 import by.erizol.calc.calcapp.ui.calc_page.MainActivity;
+import by.erizol.calc.calcapp.ui.shop_window.FireBasePojo;
+import by.erizol.calc.calcapp.ui.shop_window.Screen_ShopWindow;
+import by.erizol.calc.calcapp.ui.base.BaseActivity;
 
 public class StartActivity extends BaseActivity implements StartMvpView {
 
@@ -40,9 +39,9 @@ public class StartActivity extends BaseActivity implements StartMvpView {
         super.onCreate(savedInstanceState);
         getScreenComponent().inject(this);
         presenter.onAttach(this);
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("8P14Lu09QNSDn0yJmfWJvog0TGC3");
 
-        myRef.child("8P14Lu09QNSDn0yJmfWJvog0TGC3").addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 FireBasePojo model = dataSnapshot.getValue(FireBasePojo.class);
@@ -67,11 +66,12 @@ public class StartActivity extends BaseActivity implements StartMvpView {
     @Override
     public void onCountryChecked(ResponseCountry responseCountry) {
         for (String items : countries) {
-            if (!items.equals(responseCountry.getCountry())){
+            if (items.equals(responseCountry.getCountry())){
                 Intent intent = new Intent(this, Screen_ShopWindow.class);
                 startActivity(intent);
+                break;
             } else {
-                Intent intent = new Intent(this, Screen_ShopWindow.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             }
         }

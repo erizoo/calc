@@ -3,11 +3,9 @@ package by.erizol.calc.calcapp.ui.calc_page;
 import javax.inject.Inject;
 
 import by.erizol.calc.calcapp.data.RepositoryManager;
-import by.erizol.calc.calcapp.ui.CreditModel;
+import by.erizol.calc.calcapp.ui.shop_window.CreditModel;
 import by.erizol.calc.calcapp.ui.base.BasePresenter;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class MainMvpPresenterImpl <V extends MainMvpView> extends BasePresenter<V>
         implements MainMvpPresenter<V> {
