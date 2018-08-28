@@ -8,6 +8,13 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -54,16 +61,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         getScreenComponent().inject(this);
         mAuth = FirebaseAuth.getInstance();
 
-
-
-        presenter.onAttach(this);
-//        presenter.checkCountry();
-    }
-
-
-
-    @OnClick(R.id.count_button)
-    public void count(){
         mAuth.signInWithEmailAndPassword(EMAIL, PASSWORD)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
@@ -73,6 +70,37 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                         Log.w(TAG, "signInWithEmail:failure", task.getException());
                     }
                 });
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        ArrayList<String> cityList = new ArrayList<>();
+
+
+        myRef.child("cities").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                cityList.clear();
+                for (DataSnapshot data : dataSnapshot.getChildren()){
+                    data.getKey();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "getUser:onCancelled", databaseError.toException());
+                // ...
+            }
+        });
+
+        presenter.onAttach(this);
+//        presenter.checkCountry();
+    }
+
+
+    @OnClick(R.id.count_button)
+    public void count() {
+
 //        CreditModel creditModel = new CreditModel();
 //        creditModel.setSummCredit(Double.parseDouble(creditSummEditText.getText().toString()));
 //        creditModel.setRate(Double.parseDouble(rateEditText.getText().toString())/100);
