@@ -1,4 +1,4 @@
-package by.erizol.calc.calcapp.ui.shop_window;
+package by.erizol.calc.calcapp.ui.shop_window.fragments;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -18,26 +18,36 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import butterknife.BindView;
-import by.erizol.calc.calcapp.R;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PeopleFragment extends Fragment implements OfferAdapter.Callback {
+import by.erizol.calc.calcapp.R;
+import by.erizol.calc.calcapp.ui.models.FireBasePojo;
+import by.erizol.calc.calcapp.ui.models.OffersModel;
+import by.erizol.calc.calcapp.ui.shop_window.OfferAdapter;
+
+public class CreditFragment extends Fragment implements OfferAdapter.Callback {
 
     private OfferAdapter offerAdapter;
-
     RecyclerView recyclerViewOffer;
+    private List<OffersModel> filtrOffers = new ArrayList<>();
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
 
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         myRef.child("8P14Lu09QNSDn0yJmfWJvog0TGC3").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 FireBasePojo model = dataSnapshot.getValue(FireBasePojo.class);
                 if (model != null) {
-                    offerAdapter.setItems(model.getOffers());
+                    for (OffersModel items : model.getOffers()) {
+                        if (items.getType().equals("credit")){
+                            filtrOffers.add(items);
+                        }
+                    }
+                    offerAdapter.setItems(filtrOffers);
                 }
             }
 
@@ -46,7 +56,6 @@ public class PeopleFragment extends Fragment implements OfferAdapter.Callback {
 
             }
         });
-
     }
 
     @Override

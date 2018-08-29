@@ -1,4 +1,4 @@
-package by.erizol.calc.calcapp.ui.shop_window;
+package by.erizol.calc.calcapp.ui.models;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -10,6 +10,8 @@ public class FireBasePojo {
     private List<String> countries;
     @SerializedName("offers")
     private List<OffersModel> offers;
+    @SerializedName("name")
+    private String name;
 
     public FireBasePojo() {
     }
@@ -32,5 +34,13 @@ public class FireBasePojo {
 
     public void setCountries(List<String> countries) {
         this.countries = countries;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -1,4 +1,4 @@
-package by.erizol.calc.calcapp.ui.shop_window;
+package by.erizol.calc.calcapp.ui.shop_window.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +16,7 @@ import java.util.Objects;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import by.erizol.calc.calcapp.R;
+import by.erizol.calc.calcapp.ui.models.CreditModel;
 
 public class CalcFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package by.erizol.calc.calcapp.ui.shop_window;
+package by.erizol.calc.calcapp.ui.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

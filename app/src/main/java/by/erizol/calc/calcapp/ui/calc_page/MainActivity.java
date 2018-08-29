@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnClick;
 import by.erizol.calc.calcapp.R;
-import by.erizol.calc.calcapp.ui.shop_window.CreditModel;
+import by.erizol.calc.calcapp.ui.models.CreditModel;
 import by.erizol.calc.calcapp.ui.base.BaseActivity;
 
 public class MainActivity extends BaseActivity implements MainMvpView {

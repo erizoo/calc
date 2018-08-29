@@ -1,4 +1,4 @@
-package by.erizol.calc.calcapp.ui.shop_window;
+package by.erizol.calc.calcapp.ui.models;
 
 public class CreditModel {
 
