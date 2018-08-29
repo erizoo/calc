@@ -13,7 +13,7 @@
         android:layout_marginTop="47dp"
         android:ems="10"
         android:hint="@string/credit_summ"
-        android:inputType="textPersonName" />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/editText_rate"
@@ -24,6 +24,7 @@
         android:layout_marginTop="132dp"
         android:ems="10"
         android:hint="@string/rate"
+        android:inputType="number"
         tools:ignore="TextFields" />
 
     <EditText
@@ -35,7 +36,7 @@
         android:layout_marginTop="215dp"
         android:ems="10"
         android:hint="@string/date"
-        android:inputType="textPersonName"
+        android:inputType="number"
         tools:ignore="TextFields" />
 
     <TextView
